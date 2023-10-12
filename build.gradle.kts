@@ -1,19 +1,25 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.9.10"
 }
 
 repositories {
     mavenCentral()
 }
+dependencies {
+    testImplementation(kotlin("test"))
+}
+
+kotlin {
+    jvmToolchain(17)
+}
 
 tasks {
-    sourceSets {
-        main {
-            java.srcDirs("src")
-        }
-    }
-
     wrapper {
-        gradleVersion = "7.6"
+        gradleVersion = "8.4"
+        distributionType = Wrapper.DistributionType.ALL
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

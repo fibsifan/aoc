@@ -77,7 +77,6 @@ class SailfishNumber(
     }
 
     private var delegate = Pair(a, b)
-    private var parent: SailfishNumber? = null
     init {
         if (delegate.first is SailfishNumber) {
             (delegate.first as SailfishNumber).parent = this
@@ -123,16 +122,12 @@ class SailfishNumber(
         val left = component1()
         val right = component2()
         if (left is SailfishInt && right is SailfishInt) {
-            val leftAddend = getLeftIntRelative()
+            TODO()
         } else if (left is SailfishNumber && left.height() + left.depth() > 4) {
             left.explode()
         } else {
             (right as SailfishNumber).explode()
         }
-    }
-
-    fun getLeftIntRelative(): SailfishInt {
-        parent?.component1() != this
     }
 }
 

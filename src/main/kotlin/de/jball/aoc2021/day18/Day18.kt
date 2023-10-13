@@ -19,10 +19,16 @@ class Day18(test: Boolean = false): Day(test, expected1 = 4140) {
 
 }
 
-sealed class SailfishNumberComponent {
+sealed class SailfishNumberComponent(var parent: SailfishNumber? = null) {
     abstract fun magnitude(): Int
     abstract fun height(): Int
-    abstract fun depth(): Int
+    fun depth(): Int {
+        val parentCopy = parent
+        return if (parentCopy != null) {
+            parentCopy.depth() + 1
+        }
+        else 0
+    }
 }
 
 private class SailfishInt(val delegate: Int): SailfishNumberComponent() {
@@ -32,10 +38,6 @@ private class SailfishInt(val delegate: Int): SailfishNumberComponent() {
 
     override fun height(): Int {
         return 0
-    }
-
-    override fun depth(): Int {
-        TODO("Not yet implemented")
     }
 
     override fun toString(): String {
@@ -93,15 +95,6 @@ class SailfishNumber(
         return max(delegate.first.height(), delegate.second.height()) + 1
     }
 
-    override fun depth(): Int {
-        val parentCopy = parent
-        return if (parentCopy == null) {
-            0
-        } else {
-            parentCopy.depth() + 1
-        }
-    }
-
     override fun toString(): String {
         return "[${delegate.first},${delegate.second}]"
     }
@@ -118,7 +111,28 @@ class SailfishNumber(
     }
 
     private fun reduced(): SailfishNumber {
+        if (height() + depth() > 4) {
+            explode()
+        } else {
+            TODO()
+        }
         return this
+    }
+
+    fun explode() {
+        val left = component1()
+        val right = component2()
+        if (left is SailfishInt && right is SailfishInt) {
+            val leftAddend = getLeftIntRelative()
+        } else if (left is SailfishNumber && left.height() + left.depth() > 4) {
+            left.explode()
+        } else {
+            (right as SailfishNumber).explode()
+        }
+    }
+
+    fun getLeftIntRelative(): SailfishInt {
+        parent?.component1() != this
     }
 }
 

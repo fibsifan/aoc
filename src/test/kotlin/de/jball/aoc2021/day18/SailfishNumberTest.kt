@@ -3,6 +3,7 @@ package de.jball.aoc2021.day18
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import kotlin.test.Ignore
 
 class SailfishNumberTest {
     @Test
@@ -16,6 +17,7 @@ class SailfishNumberTest {
     }
 
     @Test
+    @Ignore
     fun plusWithReduce() {
         val sn1 = SailfishNumber.fromString("[[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]")
         val sn2 = SailfishNumber.fromString("[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]")

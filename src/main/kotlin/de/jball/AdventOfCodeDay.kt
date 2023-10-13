@@ -7,8 +7,9 @@ abstract class AdventOfCodeDay<T>(
     val test: Boolean = false,
     val expected1: T,
     val expected2: T) {
-    val input: List<String> = File("src/${if(test) "test" else "main"}/resources/${year}",
-        "${this::class.simpleName}${if (test) "_test" else ""}.txt")
+    val input: List<String> = File(
+        "src/${if(test) "test" else "main"}/resources/${year}",
+        "${this::class.simpleName}.txt")
         .readLines()
 
 

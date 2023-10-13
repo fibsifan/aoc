@@ -9,6 +9,8 @@ class SailfishInt(private val delegate: Int) : SailfishNumberComponent() {
         return 0
     }
 
+    override fun needsSplit() = delegate > 9
+
     override fun toString(): String {
         return delegate.toString()
     }

@@ -4,9 +4,8 @@ import java.util.*
 import kotlin.math.max
 
 class SailfishNumber(
-    a: SailfishNumberComponent,
-    b: SailfishNumberComponent
-): SailfishNumberComponent() {
+    a: SailfishNumberComponent, b: SailfishNumberComponent
+) : SailfishNumberComponent() {
     companion object {
         fun fromString(sailfishNumberString: String): SailfishNumber {
             var workingString = sailfishNumberString
@@ -35,6 +34,7 @@ class SailfishNumber(
     }
 
     private val delegate = Pair(a, b)
+
     init {
         a.parent = this
         b.parent = this
@@ -42,7 +42,7 @@ class SailfishNumber(
 
     override fun magnitude(): Int {
         val (left, right) = this
-        return left.magnitude()*3 + right.magnitude()*2
+        return left.magnitude() * 3 + right.magnitude() * 2
     }
 
     override fun height(): Int {
@@ -55,9 +55,15 @@ class SailfishNumber(
         return "[$left,$right]"
     }
 
+    override fun needsSplit(): Boolean {
+        val (left, right) = this
+        return left.needsSplit() || right.needsSplit()
+    }
+
     operator fun component1(): SailfishNumberComponent {
         return delegate.component1()
     }
+
     operator fun component2(): SailfishNumberComponent {
         return delegate.component2()
     }
@@ -67,11 +73,16 @@ class SailfishNumber(
     }
 
     private fun reduced(): SailfishNumber {
-        if (height() + depth() > 4) {
-            explode()
-        } else {
-            TODO()
+        while (needsExplode() || needsSplit()) {
+            if (needsExplode()) {
+                explode()
+                continue
+            }
+            if (needsSplit()) {
+                split()
+            }
         }
+
         return this
     }
 
@@ -84,5 +95,9 @@ class SailfishNumber(
         } else {
             (right as SailfishNumber).explode()
         }
+    }
+
+    fun split() {
+        TODO()
     }
 }

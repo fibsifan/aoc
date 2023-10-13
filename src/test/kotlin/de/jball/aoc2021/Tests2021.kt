@@ -1,27 +1,26 @@
-package de.jball.aoc2022
+package de.jball.aoc2021
 
-import de.jball.aoc2022.day01.Day01
-import de.jball.aoc2022.day02.Day02
-import de.jball.aoc2022.day03.Day03
-import de.jball.aoc2022.day04.Day04
-import de.jball.aoc2022.day05.Day05
-import de.jball.aoc2022.day06.Day06
-import de.jball.aoc2022.day07.Day07
-import de.jball.aoc2022.day08.Day08
-import de.jball.aoc2022.day09.Day09
-import de.jball.aoc2022.day10.Day10
-import de.jball.aoc2022.day11.Day11
-import de.jball.aoc2022.day12.Day12
-import de.jball.aoc2022.day13.Day13
-import de.jball.aoc2022.day14.Day14
-import de.jball.aoc2022.day15.Day15
-import de.jball.aoc2022.day16.Day16
-import de.jball.aoc2022.day19.Day19
+import de.jball.aoc2021.day01.Day01
+import de.jball.aoc2021.day02.Day02
+import de.jball.aoc2021.day03.Day03
+import de.jball.aoc2021.day04.Day04
+import de.jball.aoc2021.day05.Day05
+import de.jball.aoc2021.day06.Day06
+import de.jball.aoc2021.day07.Day07
+import de.jball.aoc2021.day08.Day08
+import de.jball.aoc2021.day09.Day09
+import de.jball.aoc2021.day10.Day10
+import de.jball.aoc2021.day11.Day11
+import de.jball.aoc2021.day12.Day12
+import de.jball.aoc2021.day13.Day13
+import de.jball.aoc2021.day14.Day14
+import de.jball.aoc2021.day15.Day15
+import de.jball.aoc2021.day16.Day16
+import de.jball.aoc2021.day18.Day18
 import kotlin.test.Ignore
-
 import kotlin.test.Test
 
-class Tests {
+class Tests2021 {
     @Test
     fun day01() {
         Day01(true).run()
@@ -78,6 +77,7 @@ class Tests {
     }
 
     @Test
+    @Ignore
     fun day12() {
         Day12(true).run()
     }
@@ -98,14 +98,13 @@ class Tests {
     }
 
     @Test
-    @Ignore
     fun day16() {
         Day16(true).run()
     }
 
     @Test
     @Ignore
-    fun day19() {
-        Day19(true).run()
+    fun day18() {
+        Day18(true).run()
     }
 }

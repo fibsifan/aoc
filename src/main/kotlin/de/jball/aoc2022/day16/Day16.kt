@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day16
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day16(test: Boolean = false): Day<Int>(test, 1651, 1707) {
+class Day16(test: Boolean = false): AdventOfCodeDay<Int>(test, 1651, 1707) {
     private val valveRegex = "Valve (\\w+) has flow rate=(\\d+); tunnels? leads? to valves? (\\w+(, \\w+)*)".toRegex()
     private val valves = input
         .map { line -> parseValve(line) }

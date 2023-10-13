@@ -1,9 +1,9 @@
 package de.jball.aoc2021.day05
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 
-class Day05(test: Boolean = false): Day(test, 5, 12) {
+class Day05(test: Boolean = false): AdventOfCodeDay<Long>(test, 5, 12) {
     private val ventLines = input.map{ ventLineString -> parseVentLine(ventLineString)}
 
     override fun part1(): Long {

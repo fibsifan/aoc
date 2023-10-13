@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day03
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day03(test: Boolean = false): Day(test, 198, 230) {
+class Day03(test: Boolean = false): AdventOfCodeDay<Long>(test, 198, 230) {
     override fun part1(): Long {
         val total = input.size
 

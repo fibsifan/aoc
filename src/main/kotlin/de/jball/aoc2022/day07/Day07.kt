@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day07
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day07(test: Boolean = false): Day<Long>(test, 95437, 24933642) {
+class Day07(test: Boolean = false): AdventOfCodeDay<Long>(test, 95437, 24933642) {
     private val rootDir = Directory(mutableMapOf())
     private val allDirs = mutableMapOf<String, Directory>()
     private val rom = 70000000L

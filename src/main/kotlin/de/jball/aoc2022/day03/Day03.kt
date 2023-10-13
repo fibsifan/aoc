@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day03
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day03(test: Boolean = false) : Day<Long>(test, 157, 70) {
+class Day03(test: Boolean = false): AdventOfCodeDay<Long>(test, 157, 70) {
     private val letterMapping = (
         ('a'..'z').zip(1L..26L) +
             ('A'..'Z').zip(27L..52L))

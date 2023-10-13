@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day09
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day09(test: Boolean = false): Day(test, 15, 1134) {
+class Day09(test: Boolean = false): AdventOfCodeDay<Long>(test, 15, 1134) {
     private val numbers = input.map {it.chunked(1).map{it.toInt()}}
     override fun part1(): Long {
         val candidates = numbers.map{ line ->

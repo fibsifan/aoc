@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day13
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day13(test: Boolean = false) : Day<Int>(test, 13, 140) {
+class Day13(test: Boolean = false): AdventOfCodeDay<Int>(test, 13, 140) {
     private val pairs = input.chunked(3).map {Pair(parsePacket(it[0]), parsePacket(it[1])) }
 
     private fun parsePacket(packetString: String): Packet {

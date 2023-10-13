@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day02
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day02(test: Boolean = false): Day(test, 150, 900) {
+class Day02(test: Boolean = false): AdventOfCodeDay<Long>(test, 150, 900) {
     private val preparedInput = input.map {
         val split = it.split(" ")
         Pair(split[0], split[1].toLong())

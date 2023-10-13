@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day18
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day18(test: Boolean = false): Day(test, expected1 = 4140) {
+class Day18(test: Boolean = false): AdventOfCodeDay<Long>(test, expected1 = 4140, expected2 = 0L) {
     private val sailfishNumbers = input.map { line -> SailfishNumber.fromString(line) }
 
     override fun part1(): Long {

@@ -1,10 +1,10 @@
 package de.jball.aoc2021.day10
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 import java.util.ArrayDeque
 import kotlin.IllegalArgumentException
 
-class Day10(test: Boolean = false): Day(test, 26397, 288957) {
+class Day10(test: Boolean = false): AdventOfCodeDay<Long>(test, 26397, 288957) {
     private val chunks = input.map { line-> line.chunked(1) }
     enum class Chunk(val char: String, val corruptionScore: Long = 0L, val completionScore: Long = 0L) {
         OPENING_PARENTHESIS("("),

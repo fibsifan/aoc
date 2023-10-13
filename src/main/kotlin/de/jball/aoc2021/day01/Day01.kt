@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day01
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day01(test: Boolean = false): Day(test, 7, 5) {
+class Day01(test: Boolean = false): AdventOfCodeDay<Long>(test, 7, 5) {
     override fun part1(): Long {
         val intInput = input.map { it.toLong() }
         return intInput.subList(0, intInput.size - 1)
@@ -20,5 +20,5 @@ class Day01(test: Boolean = false): Day(test, 7, 5) {
 }
 
 fun main() {
-    Day01().run()
+    Day01(true).run()
 }

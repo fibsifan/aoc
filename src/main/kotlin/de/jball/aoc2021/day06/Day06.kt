@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day06
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day06(test: Boolean = false): Day(test, 5934L, 26984457539L) {
+class Day06(test: Boolean = false): AdventOfCodeDay<Long>(test, 5934L, 26984457539L) {
     private val fishByAge = input[0].split(",")
         .groupingBy { it }
         .aggregate { _, accumulator: Long?, _, first -> if (first) 1L else accumulator!! + 1L  }

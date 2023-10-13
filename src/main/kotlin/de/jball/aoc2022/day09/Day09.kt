@@ -1,10 +1,10 @@
 package de.jball.aoc2022.day09
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 import kotlin.math.sign
 
-class Day09(test: Boolean = false) : Day<Int>(test, 88, 36) {
+class Day09(test: Boolean = false): AdventOfCodeDay<Int>(test, 88, 36) {
     private val directions = input.map { parseDirectionLine(it) }
 
     private fun parseDirectionLine(directionLine: String): Pair<Direction, Int> {

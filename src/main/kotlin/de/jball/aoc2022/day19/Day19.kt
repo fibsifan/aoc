@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day19
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day19(test: Boolean = false): Day<Int>(test, 33, 0) {
+class Day19(test: Boolean = false): AdventOfCodeDay<Int>(test, 33, 0) {
     private val parserRegex = "Blueprint (\\d+): Each ore robot costs (\\d+) ore. Each clay robot costs (\\d+) ore. Each obsidian robot costs (\\d+) ore and (\\d+) clay. Each geode robot costs (\\d+) ore and (\\d+) obsidian.".toRegex()
     private val blueprints: Map<Int, RobotBlueprint> = input.map { parserRegex.find(it)!! }
         .associateBy(keySelector = { getGroupValueAsInt(1, it.groups) },

@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day05
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 import java.util.Stack
 
-class Day05(test: Boolean = false): Day<String>(test, "CMZ", "MCD") {
+class Day05(test: Boolean = false): AdventOfCodeDay<String>(test, "CMZ", "MCD") {
     private val crates1: List<Stack<Char>>
     private val crates2: List<Stack<Char>>
 

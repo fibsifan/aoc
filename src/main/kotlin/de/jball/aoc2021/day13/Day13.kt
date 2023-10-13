@@ -1,9 +1,9 @@
 package de.jball.aoc2021.day13
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 
-class Day13(test: Boolean = false) : Day(test, expected1 = 17L, expected2 = 16L) {
+class Day13(test: Boolean = false): AdventOfCodeDay<Long>(test, expected1 = 17L, expected2 = 16L) {
     private val emptyLine = input.indexOf("")
     private val map = input.subList(0, emptyLine)
         .map {

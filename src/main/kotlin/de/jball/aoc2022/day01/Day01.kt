@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day01
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day01(test: Boolean = false) : Day<Long>(test, 24000, 45000) {
+class Day01(test: Boolean = false) : AdventOfCodeDay<Long>(test, 24000, 45000) {
     private val elves: List<List<Long>> = getElves()
 
     private fun getElves(): List<List<Long>> {

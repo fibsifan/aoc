@@ -1,9 +1,9 @@
 package de.jball.aoc2022.day14
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 
-class Day14(test: Boolean = false): Day<Int>(test, 24, 93) {
+class Day14(test: Boolean = false): AdventOfCodeDay<Int>(test, 24, 93) {
     private val rocks = input.map { rockFormation ->
         rockFormation.split(" -> ")
             .map { coordinate ->

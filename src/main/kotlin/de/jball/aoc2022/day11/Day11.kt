@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day11
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day11(test: Boolean = false) : Day<Long>(test, 10605L, 2713310158L) {
+class Day11(test: Boolean = false): AdventOfCodeDay<Long>(test, 10605L, 2713310158L) {
     private val monkeys = input
         .chunked(7)
         .map { parseMonkey(it) }

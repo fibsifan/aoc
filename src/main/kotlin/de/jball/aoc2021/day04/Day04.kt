@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day04
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day04(test: Boolean = false): Day(test, 4512, 1924) {
+class Day04(test: Boolean = false): AdventOfCodeDay<Long>(test, 4512, 1924) {
     private val randomNumbers = input[0].split(",").map {it.toLong()}
     private val boards = input.subList(1, input.size)
         .chunked(6)

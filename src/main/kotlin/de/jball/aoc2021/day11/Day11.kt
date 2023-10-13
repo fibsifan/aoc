@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day11
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day11(test: Boolean = false): Day(test, 1656, 195) {
+class Day11(test: Boolean = false): AdventOfCodeDay<Long>(test, 1656, 195) {
     private val valuesByPosition = input.flatMapIndexed { lineNo, line -> line
         .chunked(1)
         .mapIndexed {columnNo, chunk -> Triple(lineNo, columnNo, chunk.toInt()) }}

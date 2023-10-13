@@ -1,10 +1,10 @@
 package de.jball.aoc2021.day07
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 import kotlin.math.roundToLong
 
-class Day07(test: Boolean = false): Day(test, 37, 168) {
+class Day07(test: Boolean = false): AdventOfCodeDay<Long>(test, 37, 168) {
     private val positions = input[0].split(",").map(String::toLong).sorted()
 
     override fun part1(): Long {

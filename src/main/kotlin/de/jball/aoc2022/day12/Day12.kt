@@ -1,9 +1,9 @@
 package de.jball.aoc2022.day12
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 import java.util.PriorityQueue
 
-class Day12(test: Boolean = false): Day<Long>(test, 31, 29) {
+class Day12(test: Boolean = false): AdventOfCodeDay<Long>(test, 31, 29) {
     private val areaMap = input.mapIndexed { line, letters ->
         letters.chunked(1)
             .mapIndexed { column, letter ->

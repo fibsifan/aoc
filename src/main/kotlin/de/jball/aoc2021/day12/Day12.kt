@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day12
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day12(test: Boolean = false) : Day(test, 226, 3509) {
+class Day12(test: Boolean = false): AdventOfCodeDay<Long>(test, 226, 3509) {
     private val graph = Graph()
     init {
         input.map {

@@ -1,9 +1,9 @@
 package de.jball.aoc2021.day08
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 import java.util.*
 
-class Day08(test: Boolean = false): Day(test, 26, 61229) {
+class Day08(test: Boolean = false): AdventOfCodeDay<Long>(test, 26, 61229) {
     private val input2 = input
         .map { line -> line.split(" | ").map { digits ->
             digits.split(" ").map { digit ->

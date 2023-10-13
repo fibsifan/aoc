@@ -1,9 +1,9 @@
 package de.jball.aoc2022.day08
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.max
 
-class Day08(test: Boolean = false) : Day<Int>(test, 21, 8) {
+class Day08(test: Boolean = false): AdventOfCodeDay<Int>(test, 21, 8) {
     private val grid = input
         .mapIndexed { lineNo, line ->
             line.chunked(1)

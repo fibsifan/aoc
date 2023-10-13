@@ -1,9 +1,9 @@
 package de.jball.aoc2022.day15
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 
-class Day15(test: Boolean = false) : Day<Long>(test, 26L, 56_000_011L) {
+class Day15(test: Boolean = false): AdventOfCodeDay<Long>(test, 26L, 56_000_011L) {
     private val parserRegex = "Sensor at x=(-?\\d+), y=(-?\\d+): closest beacon is at x=(-?\\d+), y=(-?\\d+)".toRegex()
     private val sensors = input.map { parseSensor(it) }
     private val beacons = input.map { parseBeacon(it) }.toSet()

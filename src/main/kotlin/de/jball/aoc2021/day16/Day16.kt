@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day16
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day16(test: Boolean = false) : Day(test, 31, 54) {
+class Day16(test: Boolean = false): AdventOfCodeDay<Long>(test, 31, 54) {
     private val binary = input[0]
         .chunked(2)
         .map { it.toUInt(16) }

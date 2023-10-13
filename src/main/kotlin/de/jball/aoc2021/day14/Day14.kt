@@ -1,8 +1,8 @@
 package de.jball.aoc2021.day14
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 
-class Day14(test: Boolean = false) : Day(test, 1588, 2188189693529L) {
+class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 1588, 2188189693529L) {
     private val polymerString = input[0]
     private val startPolymer = polymerString.windowed(2).groupingBy { it }.eachCount()
         .map { (k, v) -> Pair(k, v.toLong()) }

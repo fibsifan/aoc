@@ -1,9 +1,9 @@
 package de.jball.aoc2021.day15
 
-import de.jball.aoc2021.Day
+import de.jball.AdventOfCodeDay
 import java.util.PriorityQueue
 
-class Day15(test: Boolean = false) : Day(test, 40, 315) {
+class Day15(test: Boolean = false): AdventOfCodeDay<Long>(test, 40, 315) {
     override fun part1(): Long {
         val cave = Cave(input, false)
         return cave.getTargetRiskSum().toLong()

@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day02
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day02(test: Boolean = false) : Day<Long>(test, 15, 12) {
+class Day02(test: Boolean = false): AdventOfCodeDay<Long>(test, 15, 12) {
     private val games: List<Pair<Played, ToPlay>> = input.map { parseGame(it) }
 
     private fun parseGame(it: String) =

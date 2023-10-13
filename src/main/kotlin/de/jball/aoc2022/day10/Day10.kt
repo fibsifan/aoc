@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day10
 
-import de.jball.aoc2022.Day
+import de.jball.AdventOfCodeDay
 
-class Day10(test: Boolean = false): Day<Int>(test, 13140, 1 /*cheating here...*/) {
+class Day10(test: Boolean = false): AdventOfCodeDay<Int>(test, 13140, 1 /*cheating here...*/) {
     private val program = input.map { parseCommand(it) }
     private val spritePositions = program
     .runningFold(listOf(Pair(0,1))) { state, operation -> operation.apply(state) }

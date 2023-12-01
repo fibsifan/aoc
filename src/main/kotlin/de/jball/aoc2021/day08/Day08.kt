@@ -4,7 +4,7 @@ import de.jball.AdventOfCodeDay
 import java.util.*
 
 class Day08(test: Boolean = false): AdventOfCodeDay<Long>(test, 26, 61229) {
-    private val input2 = input
+    private val pairedInput = input
         .map { line -> line.split(" | ").map { digits ->
             digits.split(" ").map { digit ->
                 digit.chunked(1).toSortedSet() } } }
@@ -13,7 +13,7 @@ class Day08(test: Boolean = false): AdventOfCodeDay<Long>(test, 26, 61229) {
         }
 
     override fun part1(): Long {
-        return input2
+        return pairedInput
             .map {it.second}
             .flatten()
             .filter{it.size in listOf(2, 3, 4, 7)}
@@ -21,7 +21,7 @@ class Day08(test: Boolean = false): AdventOfCodeDay<Long>(test, 26, 61229) {
     }
 
     override fun part2(): Long {
-        return input2.sumOf { determineOutput(it) }
+        return pairedInput.sumOf { determineOutput(it) }
     }
 
     private fun determineOutput(line: Pair<List<SortedSet<String>>, List<SortedSet<String>>>): Long {

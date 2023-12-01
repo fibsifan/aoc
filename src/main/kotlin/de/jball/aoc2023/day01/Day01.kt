@@ -2,7 +2,7 @@ package de.jball.aoc2023.day01
 
 import de.jball.AdventOfCodeDay
 
-class Day01(test: Boolean = false) : AdventOfCodeDay<Int>(test, 142, 281) {
+class Day01(test: Boolean = false) : AdventOfCodeDay<Int>(test, 142, 281+21) {
     private val  digits = mapOf(
         "1" to 1,
         "2" to 2,
@@ -35,7 +35,8 @@ class Day01(test: Boolean = false) : AdventOfCodeDay<Int>(test, 142, 281) {
 
     override fun part2(): Int {
         return input2.sumOf {
-            val digitsMatches = Regex("$digitRegexString").findAll(it)
+            val digitsMatches = Regex("(?=($digitRegexString))").findAll(it)
+                .map { matchResult -> matchResult.groups[1]!! }
             val first = digitsMatches.first().value
             val last = digitsMatches.last().value
             val firstDigit = digits[first] ?: digitStrings[first]!!
@@ -46,5 +47,5 @@ class Day01(test: Boolean = false) : AdventOfCodeDay<Int>(test, 142, 281) {
 }
 
 fun main() {
-    Day01(false).run()
+    Day01().run()
 }

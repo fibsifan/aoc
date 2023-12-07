@@ -4,7 +4,7 @@ import de.jball.AdventOfCodeDay
 
 class Day04(test: Boolean = false): AdventOfCodeDay<Int>(test, 13, 30) {
     override fun part1(): Int {
-        return input1.map {
+        return input.map {
             parseGame(it)
         }.sumOf { game ->
             val matches = game.first.intersect(game.second)
@@ -24,7 +24,7 @@ class Day04(test: Boolean = false): AdventOfCodeDay<Int>(test, 13, 30) {
     }
 
     override fun part2(): Int {
-        return input2.foldIndexed(MutableList(input2.size) { 1 }) {
+        return input.foldIndexed(MutableList(input.size) { 1 }) {
                 index: Int, gameCopies: MutableList<Int>, line: String ->
             val game = parseGame(line)
             val wins = game.first.intersect(game.second).size

@@ -10,7 +10,7 @@ class Day02(test: Boolean = false) : AdventOfCodeDay<Int>(test, 8, 2286) {
         Color.blue to 14
     )
     override fun part1(): Int {
-        return parseGameList(input1)
+        return parseGameList(input)
             .filter {(_, game) -> !game.any { maximumTopped(it) } }
             .sumOf { (gameId, _) -> gameId }
     }
@@ -46,7 +46,7 @@ class Day02(test: Boolean = false) : AdventOfCodeDay<Int>(test, 8, 2286) {
     }
 
     override fun part2(): Int {
-        return parseGameList(input2)
+        return parseGameList(input)
             .sumOf {
                 getGamePower(it.second)
             }

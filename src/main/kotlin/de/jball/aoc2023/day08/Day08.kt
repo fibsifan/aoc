@@ -68,7 +68,7 @@ class Day08(test: Boolean = false): AdventOfCodeDay<Long>(test, 6, 6) {
             }
         }
 
-        return minIterations.reduce { a, b -> findLCM(a, b) } * path1.size
+        return minIterations.reduce { a, b -> findLCM(a, b) } * path2.size
     }
 
     private fun findLCM(a: Long, b: Long): Long {

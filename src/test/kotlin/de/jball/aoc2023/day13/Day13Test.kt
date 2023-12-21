@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day13Test {
-    private val unitUnderTest = Day13()
+    private val unitUnderTest = Day13(true)
 
     private val verticalTestData = """
         #.##..##.

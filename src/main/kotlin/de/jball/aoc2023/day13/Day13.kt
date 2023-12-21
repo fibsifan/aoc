@@ -1,7 +1,6 @@
 package de.jball.aoc2023.day13
 
 import de.jball.AdventOfCodeDay
-import kotlin.math.max
 import kotlin.math.min
 
 class Day13(test: Boolean = false): AdventOfCodeDay<Int>(test, 405, 400) {
@@ -88,16 +87,19 @@ data class Pattern(val pattern: Map<Pair<Int, Int>, Boolean>) {
         return (1 ..< width).firstOrNull { mirrorSmudgedVertically(it) }
     }
 
+    /**
+     * Restores the original representation
+     */
     override fun toString(): String {
-        return (1..height).map { line ->
-            (1..width).map { column ->
+        return (1..height).joinToString("\n") { line ->
+            (1..width).joinToString("") { column ->
                 if (pattern[Pair(line, column)]!!) {
-                    '#'
+                    "#"
                 } else {
-                    '.'
+                    "."
                 }
-            }.joinToString("")
-        }.joinToString("\n")
+            }
+        }
     }
 }
 

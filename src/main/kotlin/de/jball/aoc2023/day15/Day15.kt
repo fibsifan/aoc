@@ -29,12 +29,9 @@ class Day15(test: Boolean = false): AdventOfCodeDay<Int>(test, 1320, 145) {
         }
 
         return boxes.entries.sumOf { (boxNumber, box) ->
-            if (box.lenses.isEmpty())
-                0
-            else
-                box.lenses.mapIndexed { lensNumber, lens->
-                    (boxNumber+1) * (lensNumber+1) * lens.focalLength
-                }.sum()
+            box.lenses.mapIndexed { lensNumber, lens->
+                (boxNumber+1) * (lensNumber+1) * lens.focalLength
+            }.sum()
         }
     }
 

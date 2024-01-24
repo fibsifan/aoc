@@ -16,6 +16,7 @@ import de.jball.aoc2021.day13.Day13
 import de.jball.aoc2021.day14.Day14
 import de.jball.aoc2021.day15.Day15
 import de.jball.aoc2021.day16.Day16
+import de.jball.aoc2021.day17.Day17
 import de.jball.aoc2021.day18.Day18
 import kotlin.test.Ignore
 import kotlin.test.Test
@@ -100,6 +101,11 @@ class Tests2021 {
     @Test
     fun day16() {
         Day16(true).run()
+    }
+
+    @Test
+    fun day17() {
+        Day17(true).run()
     }
 
     @Test

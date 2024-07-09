@@ -3,11 +3,9 @@ package de.jball.aoc2021.day18
 import java.util.*
 import kotlin.math.max
 
-class SailfishNumber(
-    a: SailfishNumberComponent, b: SailfishNumberComponent
-) : SailfishNumberComponent() {
+class SailfishPair(a: SailfishNumberComponent, b: SailfishNumberComponent) : SailfishNumberComponent() {
     companion object {
-        fun fromString(sailfishNumberString: String): SailfishNumber {
+        fun fromString(sailfishNumberString: String): SailfishPair {
             var workingString = sailfishNumberString
             val stack: Deque<SailfishNumberComponent> = LinkedList()
             while (workingString.isNotEmpty()) {
@@ -16,20 +14,20 @@ class SailfishNumber(
                 } else if (workingString.startsWith("]")) {
                     val b = stack.pop()
                     val a = stack.pop()
-                    stack.push(SailfishNumber(a, b))
+                    stack.push(SailfishPair(a, b))
                 } else if (workingString.startsWith(",")) {
                     // do nothing
                 } else {
-                    stack.push(SailfishInt(workingString[0].toString().toInt()))
+                    stack.push(SailfishInt(Regex("^\\d+").find(workingString)!!.value.toInt()))
                 }
-                workingString = workingString.substring(1)
+                workingString = workingString.replace(Regex("^\\d+|^."), "")
             }
 
             if (stack.size != 1) {
-                TODO()
+                throw IllegalStateException("Couldn't parse sailfish number: $sailfishNumberString")
             }
 
-            return stack.pop() as SailfishNumber
+            return stack.pop() as SailfishPair
         }
     }
 
@@ -40,9 +38,9 @@ class SailfishNumber(
         b.parent = this
     }
 
-    override fun magnitude(): Int {
+    override fun magnitude(): Long {
         val (left, right) = this
-        return left.magnitude() * 3 + right.magnitude() * 2
+        return left.magnitude() * 3L + right.magnitude() * 2L
     }
 
     override fun height(): Int {
@@ -60,6 +58,17 @@ class SailfishNumber(
         return left.needsSplit() || right.needsSplit()
     }
 
+    override fun split(): SailfishPair {
+        val (left, right) = this
+        return if (left.needsSplit()) {
+            SailfishPair(left.split(), right)
+        } else if (right.needsSplit()) {
+            SailfishPair(left, right.split())
+        } else {
+            throw IllegalStateException("Split called on node that doesnt need splitting: $this")
+        }
+    }
+
     operator fun component1(): SailfishNumberComponent {
         return delegate.component1()
     }
@@ -68,36 +77,15 @@ class SailfishNumber(
         return delegate.component2()
     }
 
-    operator fun plus(increment: SailfishNumber): SailfishNumber {
-        return SailfishNumber(this, increment).reduced()
+    operator fun plus(increment: SailfishPair): SailfishPair {
+        return SailfishPair(this, increment)
     }
 
-    private fun reduced(): SailfishNumber {
-        while (needsExplode() || needsSplit()) {
-            if (needsExplode()) {
-                explode()
-                continue
-            }
-            if (needsSplit()) {
-                split()
-            }
-        }
-
-        return this
+    override fun equals(other: Any?): Boolean {
+        return other is SailfishPair && delegate == other.delegate
     }
 
-    fun explode() {
-        val (left, right) = this
-        if (left is SailfishInt && right is SailfishInt) {
-            TODO()
-        } else if (left is SailfishNumber && left.height() + left.depth() > 4) {
-            left.explode()
-        } else {
-            (right as SailfishNumber).explode()
-        }
-    }
-
-    fun split() {
-        TODO()
+    override fun hashCode(): Int {
+        return delegate.hashCode()
     }
 }

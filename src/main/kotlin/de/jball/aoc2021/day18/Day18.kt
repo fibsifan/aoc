@@ -16,5 +16,5 @@ class Day18(test: Boolean = false): AdventOfCodeDay<Long>(test, expected1 = 4140
 
 
 fun main() {
-    Day18(true).run()
+    Day18().run()
 }

@@ -1,9 +1,10 @@
 package de.jball.aoc2021.day18
 
-import java.util.*
+import java.util.Deque
+import java.util.LinkedList
 import kotlin.math.max
 
-class SailfishPair(a: SailfishNumberComponent, b: SailfishNumberComponent) : SailfishNumberComponent() {
+class SailfishPair(internal var left: SailfishNumberComponent, internal var right: SailfishNumberComponent) : SailfishNumberComponent() {
     companion object {
         fun fromString(sailfishNumberString: String): SailfishPair {
             var workingString = sailfishNumberString
@@ -31,35 +32,28 @@ class SailfishPair(a: SailfishNumberComponent, b: SailfishNumberComponent) : Sai
         }
     }
 
-    private val delegate = Pair(a, b)
-
     init {
-        a.parent = this
-        b.parent = this
+        left.parent = this
+        right.parent = this
     }
 
     override fun magnitude(): Long {
-        val (left, right) = this
         return left.magnitude() * 3L + right.magnitude() * 2L
     }
 
     override fun height(): Int {
-        val (left, right) = this
         return max(left.height(), right.height()) + 1
     }
 
     override fun toString(): String {
-        val (left, right) = this
         return "[$left,$right]"
     }
 
     override fun needsSplit(): Boolean {
-        val (left, right) = this
         return left.needsSplit() || right.needsSplit()
     }
 
     override fun split(): SailfishPair {
-        val (left, right) = this
         return if (left.needsSplit()) {
             SailfishPair(left.split(), right)
         } else if (right.needsSplit()) {
@@ -70,11 +64,11 @@ class SailfishPair(a: SailfishNumberComponent, b: SailfishNumberComponent) : Sai
     }
 
     operator fun component1(): SailfishNumberComponent {
-        return delegate.component1()
+        return left
     }
 
     operator fun component2(): SailfishNumberComponent {
-        return delegate.component2()
+        return right
     }
 
     operator fun plus(increment: SailfishPair): SailfishPair {
@@ -82,10 +76,10 @@ class SailfishPair(a: SailfishNumberComponent, b: SailfishNumberComponent) : Sai
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is SailfishPair && delegate == other.delegate
+        return other is SailfishPair && left == other.left && right == other.right
     }
 
     override fun hashCode(): Int {
-        return delegate.hashCode()
+        return left.hashCode() * 31 + right.hashCode()
     }
 }

@@ -1,6 +1,6 @@
 package de.jball.aoc2021.day18
 
-class SailfishInt(internal val delegate: Int) : SailfishNumberComponent() {
+class SailfishInt(internal var delegate: Int) : SailfishNumberComponent() {
     override fun magnitude(): Long {
         return delegate.toLong()
     }

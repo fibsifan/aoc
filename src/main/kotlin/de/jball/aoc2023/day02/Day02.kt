@@ -4,70 +4,71 @@ import de.jball.AdventOfCodeDay
 
 class Day02(test: Boolean = false) : AdventOfCodeDay<Int>(test, 8, 2286) {
 
-    private val part1Maximums = mapOf(
-        Color.red to 12,
-        Color.green to 13,
-        Color.blue to 14
-    )
-    override fun part1(): Int {
-        return parseGameList(input)
-            .filter {(_, game) -> !game.any { maximumTopped(it) } }
-            .sumOf { (gameId, _) -> gameId }
-    }
+	private val part1Maximums = mapOf(
+		Color.red to 12,
+		Color.green to 13,
+		Color.blue to 14
+	)
 
-    private fun parseGameList(lines: List<String>) = lines.asSequence()
-        .map { line -> line.split(": ") }
-        .map { line -> Pair(parseGameId(line[0]), line[1]) }
-        .map { (gameId, gameString) ->
-            val game = parseGame(gameString)
-            Pair(gameId, game)
-        }
+	override fun part1(): Int {
+		return parseGameList(input)
+			.filter { (_, game) -> !game.any { maximumTopped(it) } }
+			.sumOf { (gameId, _) -> gameId }
+	}
 
-    private fun maximumTopped(round: Map<Color, Int>): Boolean {
-        return round.entries.any { part1Maximums[it.key]!! < it.value }
-    }
+	private fun parseGameList(lines: List<String>) = lines.asSequence()
+		.map { line -> line.split(": ") }
+		.map { line -> Pair(parseGameId(line[0]), line[1]) }
+		.map { (gameId, gameString) ->
+			val game = parseGame(gameString)
+			Pair(gameId, game)
+		}
 
-    private fun parseGameId(gameIdString: String) : Int {
-        return Regex("Game (\\d+)").matchEntire(gameIdString)!!.groups[1]!!.value.toInt()
-    }
+	private fun maximumTopped(round: Map<Color, Int>): Boolean {
+		return round.entries.any { part1Maximums[it.key]!! < it.value }
+	}
 
-    private fun parseGame(gameString: String) : List<Map<Color, Int>> {
-        val roundStrings = gameString.split("; ")
-        return roundStrings.map { parseRound(it) }
-    }
+	private fun parseGameId(gameIdString: String): Int {
+		return Regex("Game (\\d+)").matchEntire(gameIdString)!!.groups[1]!!.value.toInt()
+	}
 
-    private fun parseRound(roundString: String): Map<Color, Int> {
-        return roundString.split(", ").map {
-            val result = it.split(" ")
-            val color = Color.valueOf(result[1])
-            val count = result[0].toInt()
-            Pair(color, count)
-        }.toMap()
-    }
+	private fun parseGame(gameString: String): List<Map<Color, Int>> {
+		val roundStrings = gameString.split("; ")
+		return roundStrings.map { parseRound(it) }
+	}
 
-    override fun part2(): Int {
-        return parseGameList(input)
-            .sumOf {
-                getGamePower(it.second)
-            }
-    }
+	private fun parseRound(roundString: String): Map<Color, Int> {
+		return roundString.split(", ").map {
+			val result = it.split(" ")
+			val color = Color.valueOf(result[1])
+			val count = result[0].toInt()
+			Pair(color, count)
+		}.toMap()
+	}
 
-    private fun getGamePower(game: List<Map<Color, Int>>) : Int {
-        val bluePower = maxByColor(game, Color.blue)
-        val greenPower = maxByColor(game, Color.green)
-        val redPower = maxByColor(game, Color.red)
-        return bluePower * greenPower * redPower
-    }
+	override fun part2(): Int {
+		return parseGameList(input)
+			.sumOf {
+				getGamePower(it.second)
+			}
+	}
 
-    private fun maxByColor(game: List<Map<Color, Int>>, color: Color) : Int {
-        return game.maxOf { it[color] ?: Int.MIN_VALUE }
-    }
+	private fun getGamePower(game: List<Map<Color, Int>>): Int {
+		val bluePower = maxByColor(game, Color.blue)
+		val greenPower = maxByColor(game, Color.green)
+		val redPower = maxByColor(game, Color.red)
+		return bluePower * greenPower * redPower
+	}
+
+	private fun maxByColor(game: List<Map<Color, Int>>, color: Color): Int {
+		return game.maxOf { it[color] ?: Int.MIN_VALUE }
+	}
 }
 
 enum class Color {
-    red, blue, green
+	red, blue, green
 }
 
 fun main() {
-    Day02().run()
+	Day02().run()
 }

@@ -1,26 +1,26 @@
 plugins {
-    kotlin("jvm") version "2.0.0"
-    idea
+	kotlin("jvm") version "2.0.0"
+	idea
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 dependencies {
-    testImplementation(kotlin("test"))
+	testImplementation(kotlin("test"))
 }
 
 kotlin {
-    jvmToolchain(21)
+	jvmToolchain(21)
 }
 
 tasks {
-    wrapper {
-        gradleVersion = "8.8"
-        distributionType = Wrapper.DistributionType.ALL
-    }
+	wrapper {
+		gradleVersion = "8.8"
+		distributionType = Wrapper.DistributionType.ALL
+	}
 }
 
 tasks.test {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }

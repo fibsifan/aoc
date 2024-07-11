@@ -1,6 +1,6 @@
 package de.jball.aoc2021.day18
 
-class SailfishInt(internal var delegate: Int) : SailfishNumberComponent() {
+class SnailfishInt(internal val delegate: Int) : SnailfishNumberComponent() {
     override fun magnitude(): Long {
         return delegate.toLong()
     }
@@ -11,10 +11,10 @@ class SailfishInt(internal var delegate: Int) : SailfishNumberComponent() {
 
     override fun needsSplit() = delegate > 9
 
-    override fun split(): SailfishPair {
+    override fun split(): SnailfishPair {
         val left = delegate / 2
         val right = delegate - left
-        return SailfishPair(SailfishInt(left), SailfishInt(right))
+        return SnailfishPair(SnailfishInt(left), SnailfishInt(right))
     }
 
     override fun toString(): String {
@@ -22,7 +22,7 @@ class SailfishInt(internal var delegate: Int) : SailfishNumberComponent() {
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is SailfishInt && delegate == other.delegate
+        return other is SnailfishInt && delegate == other.delegate
     }
 
     override fun hashCode(): Int {

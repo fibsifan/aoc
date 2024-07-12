@@ -4,50 +4,36 @@ import de.jball.AdventOfCodeDay
 
 class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 136L, 64L) {
 	private val platform = Platform.read(input)
-	private val lookup = mutableMapOf<Platform, Platform>()
 
 	override fun part1(): Long {
 		return platform.shift(Direction.NORTH).load()
 	}
 
 	override fun part2(): Long {
-		var tmp = platform
+		val seenStates = mutableListOf(platform to 1)
+		val seenStrings = mutableSetOf(platform.toString())
 
-		while (!lookup.containsKey(tmp)) {
-			val newTmp = tmp.cycle()
-			lookup[tmp] = newTmp
-			tmp = newTmp
+		while (seenStates.last().second == seenStates.size) {
+			val next = seenStates.last().first.cycle()
+
+			seenStates += if (!seenStrings.add(next.cycle().toString())) {
+				val index = seenStates.indexOfFirst { seen -> seen.first == next.cycle() }
+				(next to index)
+			} else {
+				(next to seenStates.size+1)
+			}
 		}
 
-		var cycleSize = 0
-		val seen = mutableSetOf<Platform>()
+		val cycleSize = seenStates.size - seenStates.last().second
+		val preCycleSize = seenStates.size - cycleSize
+		val postCycleSize = (1_000_000_000 - preCycleSize) % cycleSize
 
-		while (!seen.contains(tmp)) {
-			seen += tmp
-			cycleSize++
-			tmp = lookup[tmp]!!
-		}
+		val endState = preCycleSize + postCycleSize
 
-		var head = 0
-		tmp = platform
-
-		while (!seen.contains(tmp)) {
-			head++
-			tmp = lookup[tmp]!!
-		}
-
-		val tail = (1_000_000_000 - head) % cycleSize
-
-		for (i in 0..tail) {
-			tmp = lookup[tmp]!!
-		}
-
-		return tmp.load()
+		return seenStates[endState].first.load()
 	}
-
-	private fun cachedCycle(platform: Platform): Platform = lookup.computeIfAbsent(platform) { it.cycle() }
 }
 
 fun main() {
-	Day14(true).run()
+	Day14().run()
 }

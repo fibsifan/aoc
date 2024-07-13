@@ -10,30 +10,32 @@ class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 136L, 64L) {
 	}
 
 	override fun part2(): Long {
-		val seenStates = mutableListOf(platform to 1)
-		val seenStrings = mutableSetOf(platform.toString())
+		val cyclePath = mutableListOf(1)
+		val seenStates = mutableListOf(platform)
 
-		while (seenStates.last().second == seenStates.size) {
-			val next = seenStates.last().first.cycle()
+		while (cyclePath.last() == cyclePath.size) {
+			val next = seenStates.last().cycle()
 
-			seenStates += if (!seenStrings.add(next.cycle().toString())) {
-				val index = seenStates.indexOfFirst { seen -> seen.first == next.cycle() }
-				(next to index)
+			if (seenStates.contains(next.cycle())) {
+				val index = seenStates.indexOfFirst { it == next.cycle() }
+				cyclePath += index
+				seenStates += next
 			} else {
-				(next to seenStates.size+1)
+				cyclePath += cyclePath.size+1
+				seenStates += next
 			}
 		}
 
-		val cycleSize = seenStates.size - seenStates.last().second
-		val preCycleSize = seenStates.size - cycleSize
+		val cycleSize = cyclePath.size - cyclePath.last()
+		val preCycleSize = cyclePath.size - cycleSize
 		val postCycleSize = (1_000_000_000 - preCycleSize) % cycleSize
 
 		val endState = preCycleSize + postCycleSize
 
-		return seenStates[endState].first.load()
+		return seenStates[endState].load()
 	}
 }
 
 fun main() {
-	Day14().run()
+	Day14(false).run()
 }

@@ -19,8 +19,8 @@ tasks {
 		gradleVersion = "8.10"
 		distributionType = Wrapper.DistributionType.ALL
 	}
-}
 
-tasks.test {
-	useJUnitPlatform()
+    test {
+        useJUnitPlatform()
+    }
 }

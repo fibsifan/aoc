@@ -47,7 +47,7 @@ class Platform(
 				val (x, y) = position
 				val newX = x + horizontal
 				val newY = y + vertical
-				val newPosition = x + horizontal to y + vertical
+				val newPosition = newX to newY
 				if (!map.containsKey(newPosition) && newX in (1..width) && newY in (1..height)) {
 					newPosition to char
 				} else {

@@ -22,7 +22,7 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
     - name: Setup and Validate Gradle
-      uses: gradle/actions/setup-gradle@v3
+      uses: gradle/actions/setup-gradle@v4
       with:
         validate-wrappers: true
     - name: Build with Gradle

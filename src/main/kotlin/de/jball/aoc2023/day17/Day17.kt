@@ -2,6 +2,7 @@ package de.jball.aoc2023.day17
 
 import de.jball.AdventOfCodeDay
 import java.util.*
+import de.jball.aocutils.Direction
 
 class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
 	private val grid = input.flatMapIndexed { lineNo, line ->

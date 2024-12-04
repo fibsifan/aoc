@@ -1,6 +1,7 @@
 package de.jball.aoc2023.day14
 
 import de.jball.AdventOfCodeDay
+import de.jball.aocutils.Direction
 
 class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 136L, 64L) {
 	private val platform = Platform.read(input)

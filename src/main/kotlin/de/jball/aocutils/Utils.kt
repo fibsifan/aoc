@@ -1,4 +1,4 @@
-package de.jball
+package de.jball.aocutils
 
 import kotlin.math.abs
 

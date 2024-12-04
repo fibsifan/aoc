@@ -1,7 +1,7 @@
 package de.jball.aoc2023.day11
 
 import de.jball.AdventOfCodeDay
-import de.jball.manhattanDistance
+import de.jball.aocutils.manhattanDistance
 
 class Day11(test: Boolean = false) : AdventOfCodeDay<Long>(test, 374L, 1030L) {
 	private val galaxies = input.mapIndexed { lineNo, line ->

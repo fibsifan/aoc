@@ -1,5 +1,7 @@
 package de.jball.aoc2023.day14
 
+import de.jball.aocutils.Direction
+
 class Platform(
 	val map: Map<Pair<Int, Int>, Char>,
 	private val width: Int,

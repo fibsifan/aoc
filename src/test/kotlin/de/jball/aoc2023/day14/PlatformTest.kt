@@ -2,6 +2,7 @@ package de.jball.aoc2023.day14
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import de.jball.aocutils.Direction
 
 class PlatformTest {
 	private val testStart = Platform.read("""

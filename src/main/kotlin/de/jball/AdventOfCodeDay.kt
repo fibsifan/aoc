@@ -54,13 +54,13 @@ abstract class AdventOfCodeDay<T>(
 		val part1 = part1()
 		println(part1)
 		if (test) {
-			check(expected1 == part1)
+			check(expected1 == part1) { "expected $part1 to equal $expected1" }
 		}
 
 		val part2 = part2()
 		println(part2)
 		if (test) {
-			check(expected2 == part2)
+			check(expected2 == part2) { "expected $part2 to equal $expected2" }
 		}
 	}
 }

@@ -3,6 +3,7 @@ package de.jball.aoc2023.day17
 import de.jball.AdventOfCodeDay
 import java.util.*
 import de.jball.aocutils.Direction
+import de.jball.aocutils.plus
 
 class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
 	private val grid = input.flatMapIndexed { lineNo, line ->
@@ -24,9 +25,6 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
 		val endY = input.size - 1
 		endPos = Pair(endX, endY)
 	}
-
-	operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>): Pair<Int, Int> =
-		Pair(this.first + other.first, this.second + other.second)
 
 	operator fun Pair<Int, Int>.plus(other: Direction): Pair<Int, Int> = this + other.toPair()
 

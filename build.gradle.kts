@@ -1,5 +1,5 @@
 plugins {
-	kotlin("jvm") version "2.1.20"
+	kotlin("jvm") version "2.1.21"
 	idea
 }
 
@@ -16,7 +16,7 @@ kotlin {
 
 tasks {
 	wrapper {
-		gradleVersion = "8.13"
+		gradleVersion = "8.14.1"
 		distributionType = Wrapper.DistributionType.ALL
 	}
 

@@ -1,16 +1,13 @@
 package de.jball.aoc2023.day17
 
 import de.jball.AdventOfCodeDay
-import java.util.*
 import de.jball.aocutils.Direction
+import de.jball.aocutils.parseGrid
 import de.jball.aocutils.plus
+import java.util.PriorityQueue
 
 class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
-	private val grid = input.flatMapIndexed { lineNo, line ->
-		line.mapIndexed { columnNo, char ->
-			Pair(columnNo, lineNo) to char.digitToInt()
-		}
-	}.toMap()
+	private val grid = parseGrid(input) { it.digitToInt() }
 	private val queue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
 	private val endPos: Pair<Int, Int>
 	private val calculated = mutableSetOf<Triple<Pair<Int, Int>, Direction, Int>>()

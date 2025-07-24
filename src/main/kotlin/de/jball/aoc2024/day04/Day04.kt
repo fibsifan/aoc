@@ -4,11 +4,10 @@ import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Direction
 import de.jball.aocutils.plus
 import de.jball.aocutils.minus
+import de.jball.aocutils.parseGrid
 
 class Day04(test: Boolean = false): AdventOfCodeDay<Int>(test, 18, 9) {
-	private val grid = input.flatMapIndexed { lineNo, line ->
-		line.mapIndexed { colNo, letter -> Pair(Pair(lineNo, colNo), letter) }
-	}.toMap()
+	private val grid = parseGrid(input) { it }
 	private val maxLines = input.size
 	private val maxColumns = input[0].length
 

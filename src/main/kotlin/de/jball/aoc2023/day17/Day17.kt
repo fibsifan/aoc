@@ -2,25 +2,31 @@ package de.jball.aoc2023.day17
 
 import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Direction
+import de.jball.aocutils.minus
 import de.jball.aocutils.parseGrid
 import de.jball.aocutils.plus
 import java.util.PriorityQueue
+import kotlin.math.abs
 
-class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
+class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
 	private val grid = parseGrid(input) { it.digitToInt() }
 	private val queue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
+	private val ultraQueue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
 	private val endPos: Pair<Int, Int>
 	private val calculated = mutableSetOf<Triple<Pair<Int, Int>, Direction, Int>>()
 
 	init {
-		val start1 = GridPosition(Pair(0, 0), Pair(Direction.EAST, 0), 0)
-		val start2 = GridPosition(Pair(0, 0), Pair(Direction.SOUTH, 0), 0)
+		val maxX = input.first().length - 1
+		val maxY = input.size - 1
+
+		val start1 = GridPosition(Pair(0, maxY), Pair(Direction.EAST, 0), 0)
+		val start2 = GridPosition(Pair(0, maxY), Pair(Direction.SOUTH, 0), 0)
 		queue.add(start1)
 		queue.add(start2)
+		ultraQueue.add(start1)
+		ultraQueue.add(start2)
 
-		val endX = input.first().length - 1
-		val endY = input.size - 1
-		endPos = Pair(endX, endY)
+		endPos = Pair(maxX, 0)
 	}
 
 	operator fun Pair<Int, Int>.plus(other: Direction): Pair<Int, Int> = this + other.toPair()
@@ -51,7 +57,7 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
 	private fun turnLeftAndRight(gridPosition: GridPosition): List<GridPosition> {
 		val direction = gridPosition.arrived.first
 		val directionIndex = Direction.entries.indexOf(direction)
-		val newDirections = listOf(Direction.entries[(directionIndex+3) % 4], Direction.entries[(directionIndex+1) % 4])
+		val newDirections = listOf(Direction.entries[(directionIndex+6) % 8], Direction.entries[(directionIndex+2) % 8])
 		return newDirections.flatMap { newDirection ->
 			(1..3).map { distance ->
 				val vector = newDirection.toPair() * distance
@@ -63,7 +69,36 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 0) {
 	}
 
 	override fun part2(): Int {
-		TODO("Not yet implemented")
+		calculated.clear()
+		while (ultraQueue.isNotEmpty()) {
+			val current = ultraQueue.poll()!!
+			if (current.point == endPos) {
+				return current.pathCost
+			}
+			if (key(current) !in calculated) {
+				ultraQueue.addAll(turnUltraLeftAndRight(current))
+				calculated.add(key(current))
+			}
+		}
+		TODO("Should not happen")
+	}
+
+	private fun turnUltraLeftAndRight(gridPosition: GridPosition): List<GridPosition> {
+		val direction = gridPosition.arrived.first
+		val directionIndex = Direction.entries.indexOf(direction)
+		val newDirections = listOf(Direction.entries[(directionIndex+6) % 8], Direction.entries[(directionIndex+2) % 8])
+		val vectors = newDirections.flatMap { newDirection ->
+			(1..10).map { distance ->
+				val vector = newDirection.toPair() * distance
+				Triple(gridPosition.point + vector, newDirection, distance)
+			}.filter { grid.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
+				prev + triple
+			}
+		}
+		return vectors.filter {
+			val diff = it.point - gridPosition.point
+			if (diff.first != 0) abs(diff.first) >= 4 else abs(diff.second) >= 4
+		}
 	}
 }
 

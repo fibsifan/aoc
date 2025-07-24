@@ -22,7 +22,7 @@ class Platform(
 	}
 
 	fun load() = map.filter { it.value == 'O' }
-		.map { height.toLong() - it.key.second.toLong() }
+		.map { it.key.second.toLong() + 1 }
 		.sum()
 
 	fun cycle() = shift(Direction.NORTH)
@@ -50,7 +50,7 @@ class Platform(
 			if (char != 'O') {
 				position to char
 			} else {
-				val newPosition = position + (direction.toPair() * Pair(1,-1))
+				val newPosition = position + direction.toPair()
 				val (newX, newY) = newPosition
 
 				if (!map.containsKey(newPosition) && newX in (0..< width) && newY in (0..< height)) {
@@ -65,7 +65,7 @@ class Platform(
 	}
 
 	override fun toString(): String {
-		return (0..< width).joinToString("\n") { row ->
+		return (width-1  downTo 0).joinToString("\n") { row ->
 			(0..< height).joinToString("") { column ->
 				map[column to row]?.toString() ?: "."
 			}

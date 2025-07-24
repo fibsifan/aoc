@@ -1,20 +1,11 @@
 package de.jball.aoc2021.day11
 
 import de.jball.AdventOfCodeDay
+import de.jball.aocutils.parseGrid
 
 class Day11(test: Boolean = false) : AdventOfCodeDay<Long>(test, 1656, 195) {
-	private val valuesByPosition = input.flatMapIndexed { lineNo, line ->
-		line
-			.chunked(1)
-			.mapIndexed { columnNo, chunk -> Triple(lineNo, columnNo, chunk.toInt()) }
-	}
-		.associateBy({ Pair(it.first, it.second) }, { it.third }).toMutableMap()
-	private val valuesByPosition2 = input.flatMapIndexed { lineNo, line ->
-		line
-			.chunked(1)
-			.mapIndexed { columnNo, chunk -> Triple(lineNo, columnNo, chunk.toInt()) }
-	}
-		.associateBy({ Pair(it.first, it.second) }, { it.third }).toMutableMap()
+	private val valuesByPosition = parseGrid(input) { it.digitToInt() }.toMutableMap()
+	private val valuesByPosition2 = parseGrid(input) { it.digitToInt() }.toMutableMap()
 
 	override fun part1(): Long {
 		var flashes = 0L
@@ -50,7 +41,7 @@ class Day11(test: Boolean = false) : AdventOfCodeDay<Long>(test, 1656, 195) {
 	private fun findNeighbors(
 		position: Pair<Int, Int>,
 		flashed: Set<Pair<Int, Int>>,
-		positionMap: MutableMap<Pair<Int, Int>, Int>
+		positionMap: Map<Pair<Int, Int>, Int>
 	): List<Pair<Int, Int>> {
 		val (first, second) = position
 		return setOf(

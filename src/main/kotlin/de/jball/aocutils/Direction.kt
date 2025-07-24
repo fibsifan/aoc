@@ -10,6 +10,10 @@ enum class Direction(private val horizontal: Int, private val vertical: Int) {
 	WEST(-1, 0),
 	NORTHWEST(-1, 1);
 
+	companion object {
+		val DIAGONALS = entries.filter { (horizontal, vertical) -> horizontal != 0 && vertical != 0 }
+	}
+
 	operator fun component1() = horizontal
 	operator fun component2() = vertical
 	fun toPair(): Pair<Int, Int> {

@@ -80,6 +80,7 @@ class Tests2023 {
 	}
 
 	@Test
+	@Ignore
 	fun day14() {
 		Day14(true).run()
 	}

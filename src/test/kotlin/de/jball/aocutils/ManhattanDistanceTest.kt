@@ -1,8 +1,6 @@
 package de.jball.aocutils
 
-import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.converter.ArgumentConverter
 import org.junit.jupiter.params.converter.ConvertWith
 import org.junit.jupiter.params.converter.TypedArgumentConverter
 import org.junit.jupiter.params.provider.CsvFileSource

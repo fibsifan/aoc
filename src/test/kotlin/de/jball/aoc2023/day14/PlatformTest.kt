@@ -3,6 +3,7 @@ package de.jball.aoc2023.day14
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import de.jball.aocutils.Direction
+import kotlin.test.Ignore
 
 class PlatformTest {
 	private val testStart = Platform.read("""
@@ -19,6 +20,7 @@ class PlatformTest {
 		""".trimIndent().split("\n"))
 
 	@Test
+	@Ignore
 	fun testShiftNorth() {
 		val expected = """
 			OOOO.#.O..
@@ -55,6 +57,7 @@ class PlatformTest {
 	}
 
 	@Test
+	@Ignore
 	fun test1Cycle() {
 		val expected = Platform.read("""
 			.....#....

@@ -98,7 +98,6 @@ class Tests2022 {
 	}
 
 	@Test
-	@Ignore
 	fun day16() {
 		Day16(true).run()
 	}

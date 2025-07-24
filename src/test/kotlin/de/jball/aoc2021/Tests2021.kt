@@ -78,7 +78,6 @@ class Tests2021 {
 	}
 
 	@Test
-	@Ignore
 	fun day12() {
 		Day12(true).run()
 	}
@@ -109,7 +108,6 @@ class Tests2021 {
 	}
 
 	@Test
-	@Ignore
 	fun day18() {
 		Day18(true).run()
 	}

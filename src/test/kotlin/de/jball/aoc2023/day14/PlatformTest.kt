@@ -20,7 +20,6 @@ class PlatformTest {
 		""".trimIndent().split("\n"))
 
 	@Test
-	@Ignore
 	fun testShiftNorth() {
 		val expected = """
 			OOOO.#.O..
@@ -57,7 +56,6 @@ class PlatformTest {
 	}
 
 	@Test
-	@Ignore
 	fun test1Cycle() {
 		val expected = Platform.read("""
 			.....#....

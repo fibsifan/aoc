@@ -14,12 +14,3 @@ operator fun Pair<Int, Int>.minus(other: Pair<Int, Int>): Pair<Int, Int> =
 
 operator fun Pair<Int, Int>.times(other: Pair<Int, Int>): Pair<Int, Int> =
 	Pair(this.first * other.first, this.second * other.second)
-
-fun <T> parseGrid(input: List<String>, transform: (input: Char) -> T ): Map<Pair<Int, Int>, T> {
-	val maxLine = input.size - 1
-	return input.flatMapIndexed { lineNo, line ->
-		line.mapIndexed { colNo, letter ->
-			Pair(Pair(colNo, maxLine - lineNo), transform(letter))
-		}
-	}.toMap()
-}

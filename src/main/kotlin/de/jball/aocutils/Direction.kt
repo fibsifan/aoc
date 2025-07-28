@@ -19,4 +19,7 @@ enum class Direction(private val horizontal: Int, private val vertical: Int) {
 	fun toPair(): Pair<Int, Int> {
 		return Pair(horizontal, vertical)
 	}
+
+	fun turnClockwise() = Direction.entries[(this.ordinal + 2) %8]
+	fun turnCounterClockwise() = Direction.entries[(this.ordinal + 6) %8]
 }

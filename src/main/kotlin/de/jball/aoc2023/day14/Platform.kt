@@ -1,28 +1,23 @@
 package de.jball.aoc2023.day14
 
 import de.jball.aocutils.Direction
-import de.jball.aocutils.plus
-import de.jball.aocutils.minus
-import de.jball.aocutils.parseGrid
-import de.jball.aocutils.times
+import de.jball.aocutils.Grid
+import de.jball.aocutils.Point
 
 class Platform(
-	val map: Map<Pair<Int, Int>, Char>,
-	private val width: Int,
-	private val height: Int
-) {
+	map: Map<Point, Char>,
+	width: Int,
+	height: Int
+): Grid<Char>(map, width, height, '.') {
 	companion object {
-		fun read(input: List<String>): Platform {
-			val platformState = parseGrid(input) { it }
-			val height = platformState.keys.maxOf { (row, _) -> row } + 1
-			val width = platformState.keys.maxOf { (_, column) -> column } + 1
-			val map = platformState.entries.filter { it.value != '.' }.associate { (coordinate, char) -> coordinate to char }
-			return Platform(map, height, width)
+		fun parse(input: List<String>): Platform {
+			val tmpGrid = parse(input, '.')
+			return Platform(tmpGrid.map, tmpGrid.width, tmpGrid.height)
 		}
 	}
 
 	fun load() = map.filter { it.value == 'O' }
-		.map { it.key.second.toLong() + 1 }
+		.map { it.key.component2().toLong() + 1 }
 		.sum()
 
 	fun cycle() = shift(Direction.NORTH)
@@ -42,15 +37,15 @@ class Platform(
 
 	private fun shiftOne(direction: Direction): Platform {
 		val entriesSortedByDirection = map.entries.sortedWith { a, b ->
-			val directionDiff = ((b.key - a.key) * direction.toPair())
-			if (directionDiff.first != 0) directionDiff.first else directionDiff.second
+			val directionDiff = ((b.key - a.key) * direction)
+			if (directionDiff.component1() != 0) directionDiff.component1() else directionDiff.component2()
 		}
 
 		val newMap = entriesSortedByDirection.associate { (position, char) ->
 			if (char != 'O') {
 				position to char
 			} else {
-				val newPosition = position + direction.toPair()
+				val newPosition = position + direction
 				val (newX, newY) = newPosition
 
 				if (!map.containsKey(newPosition) && newX in (0..< width) && newY in (0..< height)) {
@@ -62,14 +57,6 @@ class Platform(
 		}
 
 		return Platform(newMap, this.width, this.height)
-	}
-
-	override fun toString(): String {
-		return (width-1  downTo 0).joinToString("\n") { row ->
-			(0..< height).joinToString("") { column ->
-				map[column to row]?.toString() ?: "."
-			}
-		}
 	}
 
 	override fun equals(other: Any?): Boolean {

@@ -4,7 +4,7 @@ import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Direction
 
 class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 136L, 64L) {
-	private val platform = Platform.read(input)
+	private val platform = Platform.parse(input)
 
 	override fun part1(): Long {
 		return platform.shift(Direction.NORTH).load()

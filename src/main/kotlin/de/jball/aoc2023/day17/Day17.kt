@@ -2,37 +2,31 @@ package de.jball.aoc2023.day17
 
 import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Direction
-import de.jball.aocutils.minus
-import de.jball.aocutils.parseGrid
-import de.jball.aocutils.plus
+import de.jball.aocutils.Grid
+import de.jball.aocutils.Point
 import java.util.PriorityQueue
 import kotlin.math.abs
 
 class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
-	private val grid = parseGrid(input) { it.digitToInt() }
+	private val grid = Grid.parse(input) { it.digitToInt() }
 	private val queue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
 	private val ultraQueue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
 	private val endPos: Pair<Int, Int>
-	private val calculated = mutableSetOf<Triple<Pair<Int, Int>, Direction, Int>>()
+	private val calculated = mutableSetOf<Triple<Point, Direction, Int>>()
 
 	init {
-		val maxX = input.first().length - 1
-		val maxY = input.size - 1
-
-		val start1 = GridPosition(Pair(0, maxY), Pair(Direction.EAST, 0), 0)
-		val start2 = GridPosition(Pair(0, maxY), Pair(Direction.SOUTH, 0), 0)
+		val start1 = GridPosition(Point(0, grid.width), Pair(Direction.EAST, 0), 0)
+		val start2 = GridPosition(Point(0, grid.height), Pair(Direction.SOUTH, 0), 0)
 		queue.add(start1)
 		queue.add(start2)
 		ultraQueue.add(start1)
 		ultraQueue.add(start2)
 
-		endPos = Pair(maxX, 0)
+		endPos = Pair(grid.width, 0)
 	}
 
-	operator fun Pair<Int, Int>.plus(other: Direction): Pair<Int, Int> = this + other.toPair()
-
-	operator fun GridPosition.plus(other: Triple<Pair<Int, Int>, Direction, Int>): GridPosition {
-		return GridPosition(other.first, Pair(other.second, other.third), this.pathCost + grid[other.first]!!)
+	operator fun GridPosition.plus(other: Triple<Point, Direction, Int>): GridPosition {
+		return GridPosition(other.first, Pair(other.second, other.third), this.pathCost + grid.map[other.first]!!)
 	}
 
 	operator fun Pair<Int, Int>.times(other: Int): Pair<Int, Int> = Pair(this.first * other, this.second * other)
@@ -56,13 +50,12 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
 
 	private fun turnLeftAndRight(gridPosition: GridPosition): List<GridPosition> {
 		val direction = gridPosition.arrived.first
-		val directionIndex = Direction.entries.indexOf(direction)
-		val newDirections = listOf(Direction.entries[(directionIndex+6) % 8], Direction.entries[(directionIndex+2) % 8])
+		val newDirections = listOf(direction.turnCounterClockwise(), direction.turnClockwise())
 		return newDirections.flatMap { newDirection ->
 			(1..3).map { distance ->
-				val vector = newDirection.toPair() * distance
+				val vector = (Point(0,0) + newDirection) * distance
 				Triple(gridPosition.point + vector, newDirection, distance)
-			}.filter { grid.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
+			}.filter { grid.map.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
 				prev + triple
 			}
 		}
@@ -89,15 +82,15 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
 		val newDirections = listOf(Direction.entries[(directionIndex+6) % 8], Direction.entries[(directionIndex+2) % 8])
 		val vectors = newDirections.flatMap { newDirection ->
 			(1..10).map { distance ->
-				val vector = newDirection.toPair() * distance
+				val vector = (Point(0,0) + newDirection) * distance
 				Triple(gridPosition.point + vector, newDirection, distance)
-			}.filter { grid.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
+			}.filter { grid.map.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
 				prev + triple
 			}
 		}
 		return vectors.filter {
 			val diff = it.point - gridPosition.point
-			if (diff.first != 0) abs(diff.first) >= 4 else abs(diff.second) >= 4
+			if (diff.x != 0) abs(diff.x) >= 4 else abs(diff.y) >= 4
 		}
 	}
 }

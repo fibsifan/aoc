@@ -1,6 +1,6 @@
 package de.jball.aocutils
 
-class Grid<T>(val map: Map<Point, T>, val width: Int, val height: Int, private val default: T? = null) {
+open class Grid<T>(val map: Map<Point, T>, val width: Int, val height: Int, private val default: T? = null) {
 	companion object {
 		fun parse(input: List<String>, default: Char? = null): Grid<Char> {
 			return parse(input, default) { it }

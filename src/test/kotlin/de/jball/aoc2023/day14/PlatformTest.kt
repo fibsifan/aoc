@@ -6,7 +6,7 @@ import de.jball.aocutils.Direction
 import kotlin.test.Ignore
 
 class PlatformTest {
-	private val testStart = Platform.read("""
+	private val testStart = Platform.parse("""
 			O....#....
 			O.OO#....#
 			.....##...
@@ -39,7 +39,7 @@ class PlatformTest {
 
 	@Test
 	fun testLoad() {
-		val input = Platform.read("""
+		val input = Platform.parse("""
 			OOOO.#.O..
 			OO..#....#
 			OO..O##..O
@@ -57,7 +57,7 @@ class PlatformTest {
 
 	@Test
 	fun test1Cycle() {
-		val expected = Platform.read("""
+		val expected = Platform.parse("""
 			.....#....
 			....#...O#
 			...OO##...

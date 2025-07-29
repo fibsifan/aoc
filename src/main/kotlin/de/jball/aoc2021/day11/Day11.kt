@@ -1,11 +1,12 @@
 package de.jball.aoc2021.day11
 
 import de.jball.AdventOfCodeDay
-import de.jball.aocutils.parseGrid
+import de.jball.aocutils.Grid
+import de.jball.aocutils.Point
 
 class Day11(test: Boolean = false) : AdventOfCodeDay<Long>(test, 1656, 195) {
-	private val valuesByPosition = parseGrid(input) { it.digitToInt() }.toMutableMap()
-	private val valuesByPosition2 = parseGrid(input) { it.digitToInt() }.toMutableMap()
+	private val valuesByPosition = Grid.parse(input) { it.digitToInt() }.map.toMutableMap()
+	private val valuesByPosition2 = Grid.parse(input) { it.digitToInt() }.map.toMutableMap()
 
 	override fun part1(): Long {
 		var flashes = 0L
@@ -16,13 +17,13 @@ class Day11(test: Boolean = false) : AdventOfCodeDay<Long>(test, 1656, 195) {
 		return flashes
 	}
 
-	private fun performIteration(flashes: Long, positionMap: MutableMap<Pair<Int, Int>, Int>): Long {
+	private fun performIteration(flashes: Long, positionMap: MutableMap<Point, Int>): Long {
 		var flashes1 = flashes
 		positionMap.keys
 			.forEach { positionMap[it] = positionMap[it]!! + 1 }
 
 		var toFlash = positionMap.filter { it.value > 9 }.map { it.key }.toSet()
-		val flashed = mutableSetOf<Pair<Int, Int>>()
+		val flashed = mutableSetOf<Point>()
 		while (toFlash.isNotEmpty()) {
 			toFlash.forEach { positionMap[it] = 0 }
 			flashed.addAll(toFlash)
@@ -39,16 +40,16 @@ class Day11(test: Boolean = false) : AdventOfCodeDay<Long>(test, 1656, 195) {
 	}
 
 	private fun findNeighbors(
-		position: Pair<Int, Int>,
-		flashed: Set<Pair<Int, Int>>,
-		positionMap: Map<Pair<Int, Int>, Int>
-	): List<Pair<Int, Int>> {
+		position: Point,
+		flashed: Set<Point>,
+		positionMap: Map<Point, Int>
+	): List<Point> {
 		val (first, second) = position
 		return setOf(
-			Pair(first - 1, second), Pair(first + 1, second),
-			Pair(first - 1, second - 1), Pair(first + 1, second - 1),
-			Pair(first - 1, second + 1), Pair(first + 1, second + 1),
-			Pair(first, second - 1), Pair(first, second + 1)
+			Point(first - 1, second), Point(first + 1, second),
+			Point(first - 1, second - 1), Point(first + 1, second - 1),
+			Point(first - 1, second + 1), Point(first + 1, second + 1),
+			Point(first, second - 1), Point(first, second + 1)
 		)
 			.subtract(flashed)
 			.filter { positionMap.containsKey(it) }

@@ -7,8 +7,6 @@ import de.jball.aocutils.Point
 
 class Day06(test: Boolean = false): AdventOfCodeDay<Int>(test, 41, 6) {
 	private val grid = Grid.parse(input)
-	private val maxX = input.first().length-1
-	private val maxY = input.size-1
 	private val  start = grid.map.entries.first { it.value == '^' }.key
 	private val startDirection = Direction.NORTH
 

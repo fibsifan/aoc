@@ -22,7 +22,7 @@ open class Grid<T>(val map: Map<Point, T>, val width: Int, val height: Int, priv
 	}
 
 	override fun toString(): String {
-		return (0 ..< height).map { row ->
+		return (height-1 downTo 0).map { row ->
 			(0 ..< width).map { column ->
 				map[Point(column, row)] ?: default
 			}.joinToString("") { it.toString() }

@@ -36,7 +36,6 @@ class Tests2024 {
 	}
 
 	@Test
-	@Ignore
 	fun day06() {
 		Day06(true).run()
 	}

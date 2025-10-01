@@ -19,20 +19,24 @@ class Day06(test: Boolean = false): AdventOfCodeDay<Int>(test, 41, 6) {
 		// only points we visited could potentially create a circle.
 		val originalPath = walkTheGrid().first.unzip().first.filter { it != start }.toSet()
 
-		TODO("Not yet implemented")
+		return originalPath.map { walkTheGrid(it) }.sumOf { (_, makesCircle) -> makesCircle }
 	}
 
-	fun walkTheGrid(): Pair<Set<Pair<Point, Direction>>, Int> {
+	fun walkTheGrid(additionalObstacle: Point? = null): Pair<Set<Pair<Point, Direction>>, Int> {
 		var currentPosition = start
 		var currentDirection = startDirection
 
 		val visited = mutableSetOf<Pair<Point, Direction>>()
 		while (visited.add(currentPosition to currentDirection)) {
-			when (grid.map[currentPosition + currentDirection]) {
-				'#' -> currentDirection = currentDirection.turnClockwise()
-				'^', '.' -> currentPosition += currentDirection
-				// else we are about to walk of the grid and didn't find a circle
-				else -> return visited to 0
+			if (currentPosition + currentDirection == additionalObstacle) {
+				currentDirection = currentDirection.turnClockwise()
+			} else {
+				when (grid.map[currentPosition + currentDirection]) {
+					'#' -> currentDirection = currentDirection.turnClockwise()
+					'^', '.' -> currentPosition += currentDirection
+					// else we are about to walk off the grid and didn't find a circle
+					else -> return visited to 0
+				}
 			}
 		}
 		// we encountered a circle and landed from the same direction at the same point

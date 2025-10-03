@@ -21,6 +21,11 @@ open class Grid<T>(val map: Map<Point, T>, val width: Int, val height: Int, priv
 		}
 	}
 
+	fun isPointInGrid(point: Point): Boolean {
+		val (x, y) = point
+		return (x in 0..<width && y in 0..<height)
+	}
+
 	override fun toString(): String {
 		return (height-1 downTo 0).map { row ->
 			(0 ..< width).map { column ->

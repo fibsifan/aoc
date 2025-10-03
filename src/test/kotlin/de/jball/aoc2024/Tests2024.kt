@@ -7,6 +7,7 @@ import de.jball.aoc2024.day04.Day04
 import de.jball.aoc2024.day05.Day05
 import de.jball.aoc2024.day06.Day06
 import de.jball.aoc2024.day07.Day07
+import de.jball.aoc2024.day08.Day08
 import kotlin.test.Test
 
 class Tests2024 {
@@ -43,5 +44,10 @@ class Tests2024 {
 	@Test
 	fun day07() {
 		Day07(true).run()
+	}
+
+	@Test
+	fun day08() {
+		Day08(true).run()
 	}
 }

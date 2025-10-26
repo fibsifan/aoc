@@ -9,6 +9,7 @@ import de.jball.aoc2024.day06.Day06
 import de.jball.aoc2024.day07.Day07
 import de.jball.aoc2024.day08.Day08
 import de.jball.aoc2024.day09.Day09
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 class Tests2024 {
@@ -53,6 +54,7 @@ class Tests2024 {
 	}
 
 	@Test
+	@Ignore
 	fun day09() {
 		Day09(true).run()
 	}

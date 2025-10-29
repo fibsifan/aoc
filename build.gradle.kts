@@ -7,9 +7,9 @@ repositories {
 }
 
 dependencies {
-	testImplementation(platform("org.junit:junit-bom:5.13.4"))
+	testImplementation(platform(libs.junit.bom))
 	testImplementation(kotlin("test"))
-	testImplementation("org.junit.jupiter:junit-jupiter-params")
+	testImplementation(libs.junit.params)
 }
 
 kotlin {

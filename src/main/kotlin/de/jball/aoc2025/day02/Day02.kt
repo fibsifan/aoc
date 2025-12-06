@@ -13,30 +13,31 @@ class Day02(test: Boolean = false): AdventOfCodeDay<Long>(test, 1227775554L, 417
 
 	override fun part1(): Long {
 		return ranges.sumOf { range ->
-			sumOfInvalidIds(range, { idString ->
-				val windowSize = idString.length / 2 + idString.length % 2
-				windowSize..windowSize
-			})
+			sumOfInvalidIds(range) { id ->
+				val idString = id.toString()
+				if (idString.length % 2 != 0)
+					false
+				else
+					idString.take(idString.length / 2) == idString.substring(idString.length / 2)
+			}
 		}
 	}
 
-	private fun sumOfInvalidIds(range: LongRange, windowFunction: (id: String) -> IntRange): Long = range.map { number ->
-		number.toString()
-	}.filter { idString ->
-		windowFunction(idString)
-			.any { windowSize ->
-				// if the different parts of the id string are all equal, then the distinct call would result in a list of size 1.
-				idString.windowed(windowSize, windowSize, true).distinct().size == 1
-			}
-	}.sumOf { numberString ->
-		numberString.toLong()
-	}
+	private fun sumOfInvalidIds(range: LongRange, idTest: (Long) -> Boolean): Long = range
+		.filter { id ->
+			idTest(id)
+		}.sumOf { numberString ->
+			numberString
+		}
 
 	override fun part2(): Long {
 		return ranges.sumOf { range ->
-			sumOfInvalidIds(range, { idString ->
-				1..(idString.length / 2 + idString.length % 2)
-			})
+			sumOfInvalidIds(range) { id ->
+				val idString = id.toString()
+				(1..idString.length/2).any { windowSize ->
+					idString.windowed(windowSize, windowSize, true).distinct().size == 1
+				}
+			}
 		}
 	}
 

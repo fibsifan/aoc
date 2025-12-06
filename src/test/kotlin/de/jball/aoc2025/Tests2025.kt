@@ -11,7 +11,6 @@ class Tests2025 {
 	}
 
 	@Test
-	@kotlin.test.Ignore
 	fun day02() {
 		Day02(true).run()
 	}

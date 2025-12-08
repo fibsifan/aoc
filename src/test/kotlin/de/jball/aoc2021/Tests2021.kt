@@ -1,5 +1,6 @@
 package de.jball.aoc2021
 
+import de.jball.AdventOfCodeDay
 import de.jball.aoc2021.day01.Day01
 import de.jball.aoc2021.day02.Day02
 import de.jball.aoc2021.day03.Day03
@@ -18,97 +19,17 @@ import de.jball.aoc2021.day15.Day15
 import de.jball.aoc2021.day16.Day16
 import de.jball.aoc2021.day17.Day17
 import de.jball.aoc2021.day18.Day18
-import kotlin.test.Ignore
-import kotlin.test.Test
+import de.jball.aoctestutils.AdventOfCodeDayTest
+import org.junit.jupiter.params.ParameterizedClass
+import org.junit.jupiter.params.provider.MethodSource
 
-class Tests2021 {
-	@Test
-	fun day01() {
-		Day01(true).run()
-	}
-
-	@Test
-	fun day02() {
-		Day02(true).run()
-	}
-
-	@Test
-	fun day03() {
-		Day03(true).run()
-	}
-
-	@Test
-	fun day04() {
-		Day04(true).run()
-	}
-
-	@Test
-	fun day05() {
-		Day05(true).run()
-	}
-
-	@Test
-	fun day06() {
-		Day06(true).run()
-	}
-
-	@Test
-	fun day07() {
-		Day07(true).run()
-	}
-
-	@Test
-	fun day08() {
-		Day08(true).run()
-	}
-
-	@Test
-	fun day09() {
-		Day09(true).run()
-	}
-
-	@Test
-	fun day10() {
-		Day10(true).run()
-	}
-
-	@Test
-	fun day11() {
-		Day11(true).run()
-	}
-
-	@Test
-	fun day12() {
-		Day12(true).run()
-	}
-
-	@Test
-	fun day13() {
-		Day13(true).run()
-	}
-
-	@Test
-	fun day14() {
-		Day14(true).run()
-	}
-
-	@Test
-	fun day15() {
-		Day15(true).run()
-	}
-
-	@Test
-	fun day16() {
-		Day16(true).run()
-	}
-
-	@Test
-	fun day17() {
-		Day17(true).run()
-	}
-
-	@Test
-	fun day18() {
-		Day18(true).run()
+@ParameterizedClass
+@MethodSource("getDays")
+class Tests2021<T: AdventOfCodeDay<out Any>>(dayConstructor: (Boolean) -> T):
+	AdventOfCodeDayTest<T>(dayConstructor) {
+	companion object {
+		@JvmStatic
+		fun getDays() = listOf(::Day01, ::Day02, ::Day03, ::Day04, ::Day05, ::Day06, ::Day07, ::Day08, ::Day09,
+			::Day10, ::Day11, ::Day12, ::Day13, ::Day14, ::Day15, ::Day16, ::Day17, ::Day18)
 	}
 }

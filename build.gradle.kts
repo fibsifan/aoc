@@ -18,7 +18,7 @@ kotlin {
 
 tasks {
 	wrapper {
-		gradleVersion = "9.6.0"
+		gradleVersion = "9.6.1"
 		distributionType = Wrapper.DistributionType.ALL
 	}
 

@@ -2,7 +2,7 @@ package de.jball.aoc2024.day05
 
 import de.jball.AdventOfCodeDay
 
-class Day05(test: Boolean = false): AdventOfCodeDay<Int>(test, 143, 123) {
+class Day05(test: Boolean = false) : AdventOfCodeDay<Int>(test, 143, 123) {
 	private val ordering = input.takeWhile { it.isNotBlank() }
 		.map { it.split("|").map(String::toInt) }
 		.groupBy({ (a, _) -> a }, { (_, b) -> b })
@@ -16,7 +16,7 @@ class Day05(test: Boolean = false): AdventOfCodeDay<Int>(test, 143, 123) {
 
 	override fun part2(): Int {
 		return reports.filter { it != it.sortedWith(this::compareWithOrdering) }
-			.map { it.sortedWith(this::compareWithOrdering)}
+			.map { it.sortedWith(this::compareWithOrdering) }
 			.sumOf { it[it.size / 2] }
 	}
 

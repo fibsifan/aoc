@@ -5,9 +5,9 @@ import de.jball.aocutils.Direction
 import de.jball.aocutils.Grid
 import de.jball.aocutils.Point
 
-class Day06(test: Boolean = false): AdventOfCodeDay<Int>(test, 41, 6) {
+class Day06(test: Boolean = false) : AdventOfCodeDay<Int>(test, 41, 6) {
 	private val grid = Grid.parse(input)
-	private val  start = grid.map.entries.first { it.value == '^' }.key
+	private val start = grid.map.entries.first { it.value == '^' }.key
 	private val startDirection = Direction.NORTH
 
 	override fun part1(): Int {

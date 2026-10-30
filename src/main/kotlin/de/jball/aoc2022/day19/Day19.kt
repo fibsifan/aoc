@@ -6,7 +6,8 @@ class Day19(test: Boolean = false) : AdventOfCodeDay<Int>(test, 33, 0) {
 	private val parserRegex =
 		"Blueprint (\\d+): Each ore robot costs (\\d+) ore. Each clay robot costs (\\d+) ore. Each obsidian robot costs (\\d+) ore and (\\d+) clay. Each geode robot costs (\\d+) ore and (\\d+) obsidian.".toRegex()
 	private val blueprints: Map<Int, RobotBlueprint> = input.map { parserRegex.find(it)!! }
-		.associateBy(keySelector = { getGroupValueAsInt(1, it.groups) },
+		.associateBy(
+			keySelector = { getGroupValueAsInt(1, it.groups) },
 			valueTransform = { RobotBlueprint(it.groups) })
 
 	override fun part1(): Int {

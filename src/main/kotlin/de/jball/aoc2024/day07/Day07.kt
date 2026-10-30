@@ -2,10 +2,10 @@ package de.jball.aoc2024.day07
 
 import de.jball.AdventOfCodeDay
 
-class Day07(test: Boolean = false): AdventOfCodeDay<Long>(test,3749L, 11387L) {
+class Day07(test: Boolean = false) : AdventOfCodeDay<Long>(test, 3749L, 11387L) {
 
 	val numbersByResult = input.map { line ->
-		val (a, b) =  line.split(": ").map { it.trim() }
+		val (a, b) = line.split(": ").map { it.trim() }
 		Pair(a.toLong(), b.split(" ").map { it.toLong() })
 	}
 

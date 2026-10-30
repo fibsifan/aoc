@@ -4,10 +4,10 @@ import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Direction
 import de.jball.aocutils.Grid
 import de.jball.aocutils.Point
-import java.util.PriorityQueue
+import java.util.*
 import kotlin.math.abs
 
-class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
+class Day17(test: Boolean = false) : AdventOfCodeDay<Int>(test, 102, 94) {
 	private val grid = Grid.parse(input) { it.digitToInt() }
 	private val queue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
 	private val ultraQueue = PriorityQueue(compareBy { pos: GridPosition -> pos.pathCost })
@@ -31,7 +31,8 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
 
 	operator fun Pair<Int, Int>.times(other: Int): Pair<Int, Int> = Pair(this.first * other, this.second * other)
 
-	private fun key(gridPosition: GridPosition) = Triple(gridPosition.point, gridPosition.arrived.first, gridPosition.arrived.second)
+	private fun key(gridPosition: GridPosition) =
+		Triple(gridPosition.point, gridPosition.arrived.first, gridPosition.arrived.second)
 
 	override fun part1(): Int {
 
@@ -53,7 +54,7 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
 		val newDirections = listOf(direction.turnCounterClockwise(), direction.turnClockwise())
 		return newDirections.flatMap { newDirection ->
 			(1..3).map { distance ->
-				val vector = (Point(0,0) + newDirection) * distance
+				val vector = (Point(0, 0) + newDirection) * distance
 				Triple(gridPosition.point + vector, newDirection, distance)
 			}.filter { grid.map.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
 				prev + triple
@@ -79,10 +80,11 @@ class Day17(test: Boolean = false): AdventOfCodeDay<Int>(test, 102, 94) {
 	private fun turnUltraLeftAndRight(gridPosition: GridPosition): List<GridPosition> {
 		val direction = gridPosition.arrived.first
 		val directionIndex = Direction.entries.indexOf(direction)
-		val newDirections = listOf(Direction.entries[(directionIndex+6) % 8], Direction.entries[(directionIndex+2) % 8])
+		val newDirections =
+			listOf(Direction.entries[(directionIndex + 6) % 8], Direction.entries[(directionIndex + 2) % 8])
 		val vectors = newDirections.flatMap { newDirection ->
 			(1..10).map { distance ->
-				val vector = (Point(0,0) + newDirection) * distance
+				val vector = (Point(0, 0) + newDirection) * distance
 				Triple(gridPosition.point + vector, newDirection, distance)
 			}.filter { grid.map.containsKey(it.first) }.runningFold(gridPosition) { prev, triple ->
 				prev + triple

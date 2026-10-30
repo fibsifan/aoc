@@ -8,7 +8,7 @@ class Platform(
 	map: Map<Point, Char>,
 	width: Int,
 	height: Int
-): Grid<Char>(map, width, height, '.') {
+) : Grid<Char>(map, width, height, '.') {
 	companion object {
 		fun parse(input: List<String>): Platform {
 			val tmpGrid = parse(input, '.')
@@ -48,7 +48,7 @@ class Platform(
 				val newPosition = position + direction
 				val (newX, newY) = newPosition
 
-				if (!map.containsKey(newPosition) && newX in (0..< width) && newY in (0..< height)) {
+				if (!map.containsKey(newPosition) && newX in (0..<width) && newY in (0..<height)) {
 					newPosition to char
 				} else {
 					position to char

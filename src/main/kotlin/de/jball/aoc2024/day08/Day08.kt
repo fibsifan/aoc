@@ -3,9 +3,8 @@ package de.jball.aoc2024.day08
 import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Grid
 import de.jball.aocutils.Point
-import kotlin.math.sin
 
-class Day08(test: Boolean = false): AdventOfCodeDay<Int>(test, 14, 34) {
+class Day08(test: Boolean = false) : AdventOfCodeDay<Int>(test, 14, 34) {
 
 	val antennas = Grid.parse(input, '.')
 
@@ -31,7 +30,7 @@ class Day08(test: Boolean = false): AdventOfCodeDay<Int>(test, 14, 34) {
 	}
 
 	private fun antiNodes(a: Point, b: Point, line: Boolean = false): List<Point> {
-		val delta = a-b
+		val delta = a - b
 		val positives = generateSequence(a) { it + delta }
 			.let { if (line) it else it.drop(1) }
 			.takeWhile { this.antennas.isPointInGrid(it) }

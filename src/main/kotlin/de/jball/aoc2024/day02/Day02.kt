@@ -2,7 +2,7 @@ package de.jball.aoc2024.day02
 
 import de.jball.AdventOfCodeDay
 
-class Day02(test: Boolean = false): AdventOfCodeDay<Int>(test, 2, 4) {
+class Day02(test: Boolean = false) : AdventOfCodeDay<Int>(test, 2, 4) {
 	private var levels = input.map { line ->
 		line.split(" ").map { it.toInt() }
 	}

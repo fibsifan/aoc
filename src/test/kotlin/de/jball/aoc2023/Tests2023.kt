@@ -20,7 +20,7 @@ import de.jball.aoctestutils.AdventOfCodeDayTest
 import org.junit.jupiter.params.ParameterizedClass
 import org.junit.jupiter.params.provider.MethodSource
 
-@ParameterizedClass
+@ParameterizedClass(name = "Day {index}")
 @MethodSource("getDays")
 class Tests2023<T: AdventOfCodeDay<out Any>>(dayConstructor: (Boolean) -> T):
 	AdventOfCodeDayTest<T>(dayConstructor) {

@@ -72,7 +72,8 @@ class Day08(test: Boolean = false) : AdventOfCodeDay<Int>(test, 21, 8) {
 
 	private fun linesOfSight(treePosition: Pair<Int, Int>): List<List<Pair<Int, Int>>> {
 		val (x, y) = treePosition
-		return listOf((0 until x).reversed().zip(List(x) { y }),
+		return listOf(
+			(0 until x).reversed().zip(List(x) { y }),
 			(x + 1 until lines).zip(List(lines - x) { y }),
 			List(y) { x }.zip((0 until y).reversed()),
 			List(columns - y) { x }.zip((y + 1 until columns))

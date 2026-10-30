@@ -3,7 +3,7 @@ package de.jball.aoc2023.day14
 import de.jball.AdventOfCodeDay
 import de.jball.aocutils.Direction
 
-class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 136L, 64L) {
+class Day14(test: Boolean = false) : AdventOfCodeDay<Long>(test, 136L, 64L) {
 	private val platform = Platform.parse(input)
 
 	override fun part1(): Long {
@@ -22,7 +22,7 @@ class Day14(test: Boolean = false): AdventOfCodeDay<Long>(test, 136L, 64L) {
 				cyclePath += index
 				seenStates += next
 			} else {
-				cyclePath += cyclePath.size+1
+				cyclePath += cyclePath.size + 1
 				seenStates += next
 			}
 		}

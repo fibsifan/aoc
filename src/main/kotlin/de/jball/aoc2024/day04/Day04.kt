@@ -5,7 +5,7 @@ import de.jball.aocutils.Direction
 import de.jball.aocutils.Grid
 import de.jball.aocutils.Point
 
-class Day04(test: Boolean = false): AdventOfCodeDay<Int>(test, 18, 9) {
+class Day04(test: Boolean = false) : AdventOfCodeDay<Int>(test, 18, 9) {
 	private val grid = Grid.parse(input)
 	private val maxLines = input.size
 	private val maxColumns = input[0].length
@@ -22,8 +22,8 @@ class Day04(test: Boolean = false): AdventOfCodeDay<Int>(test, 18, 9) {
 	}
 
 	private fun isNotBorder(gridPosition: Point): Boolean {
-		return gridPosition.x > 0 && gridPosition.x < maxLines-1 &&
-			gridPosition.y > 0 && gridPosition.y < maxColumns-1
+		return gridPosition.x > 0 && gridPosition.x < maxLines - 1 &&
+			gridPosition.y > 0 && gridPosition.y < maxColumns - 1
 	}
 
 	override fun part2(): Int {

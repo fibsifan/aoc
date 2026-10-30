@@ -3,7 +3,7 @@ package de.jball.aoc2024.day01
 import de.jball.AdventOfCodeDay
 import kotlin.math.abs
 
-class Day01(test: Boolean = false): AdventOfCodeDay<Long>(test, 11, 31) {
+class Day01(test: Boolean = false) : AdventOfCodeDay<Long>(test, 11, 31) {
 	private val regex = Regex("(\\d+)\\s+(\\d+)")
 	private val lists = input.map { line ->
 		val groups = regex.matchEntire(line)!!.groups
@@ -11,7 +11,7 @@ class Day01(test: Boolean = false): AdventOfCodeDay<Long>(test, 11, 31) {
 	}.unzip()
 
 	override fun part1(): Long {
-		return lists.first.sorted().zip(lists.second.sorted()) { a, b -> abs(a-b) }.sum()
+		return lists.first.sorted().zip(lists.second.sorted()) { a, b -> abs(a - b) }.sum()
 	}
 
 	override fun part2(): Long {

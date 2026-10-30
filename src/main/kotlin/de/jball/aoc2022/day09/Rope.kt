@@ -1,8 +1,8 @@
 package de.jball.aoc2022.day09
 
+import de.jball.aocutils.Direction
 import kotlin.math.abs
 import kotlin.math.sign
-import de.jball.aocutils.Direction
 
 class Rope(length: Int) {
 	private val knots = MutableList(length) { Pair(0, 0) }

@@ -1,10 +1,9 @@
 package de.jball.aoc2025.day01
 
 import de.jball.AdventOfCodeDay
-import kotlin.math.abs
 import kotlin.math.floor
 
-class Day01(test: Boolean = false): AdventOfCodeDay<Int>(test, 3, 6) {
+class Day01(test: Boolean = false) : AdventOfCodeDay<Int>(test, 3, 6) {
 
 	val rotations = input.map { line ->
 		val number = line.drop(1).toInt()
@@ -20,7 +19,7 @@ class Day01(test: Boolean = false): AdventOfCodeDay<Int>(test, 3, 6) {
 	override fun part1(): Int {
 		return rotations.runningFold(50) { prev, rotation ->
 			(prev + rotation) % 100
-		}.count { it == 0}
+		}.count { it == 0 }
 	}
 
 	override fun part2(): Int {

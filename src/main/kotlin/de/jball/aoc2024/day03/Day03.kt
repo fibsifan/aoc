@@ -2,7 +2,7 @@ package de.jball.aoc2024.day03
 
 import de.jball.AdventOfCodeDay
 
-class Day03(test: Boolean = false): AdventOfCodeDay<Long>(test, 161, 48) {
+class Day03(test: Boolean = false) : AdventOfCodeDay<Long>(test, 161, 48) {
 	private val multiplicationRegex = Regex("mul\\((\\d{1,3}),(\\d{1,3})\\)")
 	private val deactivationRegex = Regex("don't\\(\\).+?do\\(\\)")
 
